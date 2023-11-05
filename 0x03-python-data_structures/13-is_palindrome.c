@@ -1,11 +1,16 @@
+#include <stddef.h> 
 #include "lists.h"
+int is_palindrome(listint_t **head);
+void reverse_list(listint_t **head);
+int compare_lists(listint_t *head1, listint_t *head2);
+
 int is_palindrome(listint_t **head)
 {
     listint_t *slow, *fast, *prev_slow, *second_half, *mid_node;
     int is_palindrome = 1;
+
     if (*head == NULL || (*head)->next == NULL)
         return (1);
-
     slow = *head;
     fast = *head;
     prev_slow = *head;
@@ -25,7 +30,6 @@ int is_palindrome(listint_t **head)
     reverse_list(&second_half);
     is_palindrome = compare_lists(*head, second_half);
     reverse_list(&second_half);
-
     if (mid_node != NULL)
     {
         prev_slow->next = mid_node;
@@ -35,6 +39,7 @@ int is_palindrome(listint_t **head)
     {
         prev_slow->next = second_half;
     }
+
     return is_palindrome;
 }
 void reverse_list(listint_t **head)
@@ -57,7 +62,6 @@ int compare_lists(listint_t *head1, listint_t *head2)
     {
         if (head1->n != head2->n)
             return (0);
-
         head1 = head1->next;
         head2 = head2->next;
     }
