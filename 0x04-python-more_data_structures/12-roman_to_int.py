@@ -2,7 +2,6 @@
 def roman_to_int(roman_string):
     if not roman_string or type(roman_string) is not str:
         return 0
-
     roman_dict = {
         'I': 1,
         'V': 5,
@@ -12,10 +11,8 @@ def roman_to_int(roman_string):
         'D': 500,
         'M': 1000
     }
-
     result = 0
     prev_value = 0
-
     for roman_char in roman_string[::-1]:
         value = roman_dict[roman_char]
         if value < prev_value:
@@ -23,21 +20,15 @@ def roman_to_int(roman_string):
         else:
             result += value
         prev_value = value
-
     return result
-
 if __name__ == "__main__":
     roman_number = "X"
     print("{} = {}".format(roman_number, roman_to_int(roman_number)))
-
     roman_number = "VII"
     print("{} = {}".format(roman_number, roman_to_int(roman_number)))
-
     roman_number = "IX"
     print("{} = {}".format(roman_number, roman_to_int(roman_number)))
-
     roman_number = "LXXXVII"
     print("{} = {}".format(roman_number, roman_to_int(roman_number)))
-
     roman_number = "DCCVII"
     print("{} = {}".format(roman_number, roman_to_int(roman_number)))
