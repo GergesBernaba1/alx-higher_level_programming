@@ -1,31 +1,27 @@
 #!/usr/bin/python3
-import sys
 
-def safe_function(fct, *args):
+def safe_print_integer_err(value):
     try:
-        result = fct(*args)
-        return result
+        print("{:d}".format(value))
+        return True
     except Exception as e:
-        print("Exception:", e, file=sys.stderr)
-        return None
+        print("Exception: {}".format(e))
+        return False
 
 if __name__ == "__main__":
-    def my_div(a, b):
-        return a / b
+    value = 89
+    has_been_print = safe_print_integer_err(value)
+    if not has_been_print:
+        print("{} is not an integer".format(value))
 
-    result = safe_function(my_div, 10, 2)
-    print("result of my_div: {}".format(result))
+    value = -89
+    has_been_print = safe_print_integer_err(value)
+    if not has_been_print:
+        print("{} is not an integer".format(value))
 
-    result = safe_function(my_div, 10, 0)
-    print("result of my_div: {}".format(result))
+    value = "School"
+    has_been_print = safe_print_integer_err(value)
+    if not has_been_print:
+        print("{} is not an integer".format(value))
 
-    def print_list(my_list, length):
-        i = 0
-        while i < length:
-            print(my_list[i])
-            i += 1
-        return length
-
-    result = safe_function(print_list, [1, 2, 3, 4], 10)
-    print("result of print_list: {}".format(result))
 
