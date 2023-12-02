@@ -1,27 +1,22 @@
 #!/usr/bin/python3
 
-def safe_print_integer_err(value):
+import sys
+
+
+def safe_function(fct, *args):
+    """Executes a function safely.
+
+    Args:
+        fct: The function to execute.
+        args: Arguments for fct.
+
+    Returns:
+        If an error occurs - None.
+        Otherwise - the result of the call to fct.
+    """
     try:
-        print("{:d}".format(value))
-        return True
-    except Exception as e:
-        print("Exception: {}".format(e))
-        return False
-
-if __name__ == "__main__":
-    value = 89
-    has_been_print = safe_print_integer_err(value)
-    if not has_been_print:
-        print("{} is not an integer".format(value))
-
-    value = -89
-    has_been_print = safe_print_integer_err(value)
-    if not has_been_print:
-        print("{} is not an integer".format(value))
-
-    value = "School"
-    has_been_print = safe_print_integer_err(value)
-    if not has_been_print:
-        print("{} is not an integer".format(value))
-
-
+        result = fct(*args)
+        return (result)
+    except:
+        print("Exception: {}".format(sys.exc_info()[1]), file=sys.stderr)
+        return (None)
